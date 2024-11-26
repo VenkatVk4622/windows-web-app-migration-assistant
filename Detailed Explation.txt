@@ -1,0 +1,46 @@
+This CloudFormation template creates an Amazon EC2 instance running Windows, along with an associated security group. Here's a breakdown of the components:
+
+Resources
+
+1. EC2 Instance (Ec2Instance)
+
+AMI: Uses the AMI with ID ami-0453ec754f44f9a4a. (This should be a Windows AMI.)
+
+Instance Type: t3.medium.
+
+Tags: Sets the instance name to WWAMA Lab.
+
+Security Groups: Attaches the security group MySecurityGroup.
+
+KeyPair: Uses a key pair specified by the parameter KeyPair.
+
+UserData:
+Downloads the Windows Web App Migration Assistant (WWAMA) as a ZIP file from GitHub to C:\wwama.zip.
+The script runs under PowerShell.
+
+2. Security Group (MySecurityGroup)
+
+Name: SimpleWinGroup.
+Description: Allows Remote Desktop Protocol (RDP) traffic.
+Ingress Rule: Opens TCP port 3389 for all IP addresses (0.0.0.0/0).
+
+Parameters
+
+KeyPair:
+Prompts the user to specify a KeyPair name (used for SSH/RDP access).
+
+Outputs
+ServerDns:
+Outputs the Public DNS Name of the created EC2 instance.
+
+
+Resulting Resources
+A Windows EC2 instance suitable for hosting the WWAMA tool.
+
+A security group that allows unrestricted RDP access to the instance (not recommended for production due to the open ingress rule).
+
+The Public DNS Name of the instance as an output for easy access.
+Notes
+
+The security group's open CidrIp: 0.0.0.0/0 allows anyone on the internet to attempt RDP access, which is a security risk. It is recommended to restrict this to a specific IP or range.
+Ensure the AMI ID corresponds to the desired Windows version in your AWS region.
