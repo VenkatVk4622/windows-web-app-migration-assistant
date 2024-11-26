@@ -2,7 +2,7 @@ Resources:
   Ec2Instance:
     Type: AWS::EC2::Instance
     Properties:
-      ImageId: ami-0453ec754f44f9a4a
+      ImageId: ami-05b1a50d6798f63cb
       InstanceType: t3.medium
       Tags:
         - Key: Name
