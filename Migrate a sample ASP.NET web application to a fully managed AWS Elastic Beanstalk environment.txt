@@ -9,7 +9,7 @@ Resources:
           Value: WWAMA Lab
       SecurityGroups:
         - !Ref MySecurityGroup
-      KeyName: Venkat
+      KeyName: Venkats
       UserData: !Base64 >
         <powershell>
 
